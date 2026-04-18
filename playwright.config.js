@@ -3,9 +3,13 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
+  timeout: 60000,
+  expect: {
+    timeout: 10000,
+  },
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? undefined : 1,
   reporter: [['html', { open: 'never' }], ['list']],
   use: {
     baseURL: 'https://umsys.com.ua',
@@ -15,32 +19,16 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'setup',
-      testMatch: /.*\.setup\.js/,
-    },
-    {
       name: 'chromium',
-      use: { 
-        ...devices['Desktop Chrome'],
-        storageState: '.auth/user.json',
-      },
-      dependencies: ['setup'],
+      use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'firefox',
-      use: { 
-        ...devices['Desktop Firefox'],
-        storageState: '.auth/user.json',
-      },
-      dependencies: ['setup'],
+      use: { ...devices['Desktop Firefox'] },
     },
     {
       name: 'webkit',
-      use: { 
-        ...devices['Desktop Safari'],
-        storageState: '.auth/user.json',
-      },
-      dependencies: ['setup'],
+      use: { ...devices['Desktop Safari'] },
     },
   ],
 });

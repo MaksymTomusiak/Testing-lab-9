@@ -36,4 +36,9 @@ test.describe('Home page', () => {
   test('header is present on the page', async ({ pages }) => {
     await expect(pages.home().header).toBeVisible();
   });
+
+  test('privacy link navigates to /privacy', async ({ pages, page }) => {
+    await pages.home().privacyLink.click();
+    await expect(page).toHaveURL(/\/privacy\/?$/);
+  });
 });

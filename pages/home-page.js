@@ -7,6 +7,10 @@ export class HomePage extends BasePage {
     return this.page.getByRole('link', { name: /sign[- ]?in|увійти/i });
   }
 
+  get privacyLink() {
+    return this.page.getByRole('link', { name: /конфіденційність|privacy/i }).first();
+  }
+
   get heroHeading() {
     return this.page.getByRole('heading').first();
   }

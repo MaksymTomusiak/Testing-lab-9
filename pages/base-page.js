@@ -8,7 +8,7 @@ export class BasePage {
   get path() { return '/'; }
 
   async goto() {
-    return this.page.goto(this.path, { waitUntil: 'networkidle' });
+    return this.page.goto(this.path, { waitUntil: 'load' });
   }
 
   async title() {
@@ -16,7 +16,7 @@ export class BasePage {
   }
 
   async waitForLoaded() {
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('load');
   }
 
   get header() {

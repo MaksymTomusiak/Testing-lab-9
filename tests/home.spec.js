@@ -37,8 +37,8 @@ test.describe('Home page', () => {
     await expect(pages.home().header).toBeVisible();
   });
 
-  test('privacy link navigates to /privacy', async ({ pages, page }) => {
+  test('privacy link redirects to sign-in for unauthenticated users', async ({ pages, page }) => {
     await pages.home().privacyLink.click();
-    await expect(page).toHaveURL(/\/privacy\/?$/);
+    await expect(page).toHaveURL(/\/sign-in\?from=%2Fprivacy/);
   });
 });

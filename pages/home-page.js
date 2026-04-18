@@ -15,8 +15,8 @@ export class HomePage extends BasePage {
     return this.page.getByRole('navigation');
   }
 
-  get mainContent() {
-    return this.page.locator('main');
+  get featuresSection() {
+    return this.page.locator('section').filter({ hasText: /Можливості|Features/i });
   }
 
   async openSignIn() {

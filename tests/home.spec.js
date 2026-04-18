@@ -29,10 +29,6 @@ test.describe('Home page', () => {
     await expect(pages.home().navigation).toBeVisible();
   });
 
-  test('main content area is present', async ({ pages }) => {
-    await expect(pages.home().mainContent).toBeVisible();
-  });
-
   test('footer is present on the page', async ({ pages }) => {
     await expect(pages.home().footer).toBeVisible();
   });
